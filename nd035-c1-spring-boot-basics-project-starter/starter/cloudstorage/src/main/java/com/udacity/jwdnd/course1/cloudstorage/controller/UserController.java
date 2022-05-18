@@ -28,7 +28,7 @@ public class UserController {
         if (message.equals("fail")) {
             model.addAttribute(Constants.STATUS, Constants.STATUS_FAIL);
         } else if (message.equals("logout")) {
-            model.addAttribute(Constants.STATUS, Constants.STATUS_SUCCESS);
+            model.addAttribute(Constants.STATUS, Constants.STATUS_LOGOUT);
         }
         return "login";
     }
@@ -39,19 +39,23 @@ public class UserController {
     }
 
     @GetMapping("/signup")
-    public String showSignup() {
+    public String showSignup(Model model, @RequestParam(name = "message", required = false,defaultValue = "") String message) {
+        if(message.equals(Constants.STATUS_LOGIN.toLowerCase())){
+            model.addAttribute(Constants.STATUS, Constants.STATUS_LOGIN);
+            return "login";
+        }
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String register(@ModelAttribute User user, Model model) {
+    public String register(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes) {
         JSONObject result = iUserService.register(user);
-        //model.addAttribute(Constants.STATUS, result.get(Constants.STATUS));
+        model.addAttribute(Constants.STATUS, result.get(Constants.STATUS));
         if (result.get(Constants.STATUS).equals(Constants.STATUS_FAIL)) {
             model.addAttribute(Constants.MESSAGE, result.get(Constants.MESSAGE));
             return "signup";
         }
-        return "redirect:/login";
+        return "redirect:/signup?message=login";
 
     }
 }

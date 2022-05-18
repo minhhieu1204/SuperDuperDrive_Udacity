@@ -4,6 +4,8 @@ public final class Constants {
 
     public static final String STATUS_FAIL = "FAIL";
     public static final String STATUS_SUCCESS = "SUCCESS";
+    public static final String STATUS_LOGOUT = "LOGOUT";
+    public static final String STATUS_LOGIN = "LOGIN";
     public static final String STATUS = "status";
     public static final String MESSAGE = "message";
 

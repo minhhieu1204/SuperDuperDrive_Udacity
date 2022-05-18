@@ -20,9 +20,15 @@
                 </div>
             </th:block>
 
-            <th:block th:if="${status == 'SUCCESS'}">
+            <th:block th:if="${status == 'LOGOUT'}">
                 <div class="alert alert-dark">
                     You have been logged out
+                </div>
+            </th:block>
+
+            <th:block th:if="${status == 'LOGIN'}">
+                <div class="alert alert-dark">
+                    You successfully signed up!
                 </div>
             </th:block>
             <div class="form-group">

@@ -37,6 +37,12 @@ public class UserService implements IUserService {
                     CommonUtil.isEmpty(user.getFirstName()) || CommonUtil.isEmpty(user.getLastName())){
                 throw new ResourceNotFoundException(Message.USER_FIELD_EMPTY);
             }
+
+            if(CommonUtil.validLength(user.getUsername(),20) ||
+                    CommonUtil.validLength(user.getFirstName(), 20) || CommonUtil.validLength(user.getLastName(), 20)){
+                throw new ResourceNotFoundException(Message.FIELD_LENGTH_INVALID);
+            }
+
             if(!CommonUtil.validUsername(user.getUsername())){
                 throw new ResourceNotFoundException(Message.USERNAME_IN_USER_INVALID);
             }

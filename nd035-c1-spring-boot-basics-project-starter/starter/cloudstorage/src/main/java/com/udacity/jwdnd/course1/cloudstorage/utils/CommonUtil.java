@@ -26,4 +26,10 @@ public final class CommonUtil {
         return false;
     }
 
+    public static boolean validLength (String resource, int max){
+        if(resource.length() <= max)
+            return false;
+        return true;
+    }
+
 }

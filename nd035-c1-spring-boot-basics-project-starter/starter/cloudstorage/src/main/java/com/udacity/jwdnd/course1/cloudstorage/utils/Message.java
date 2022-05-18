@@ -31,4 +31,6 @@ public final class Message {
     public static final String USER_FIELD_EMPTY = "field empty!";
     public static final String USER_EXIST ="User already exist!";
     public static final String USERNAME_IN_USER_INVALID = "username invalid!";
+
+    public static final String FIELD_LENGTH_INVALID = "invalid length field!";
 }

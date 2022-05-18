@@ -42,6 +42,11 @@ public class NoteService implements INoteService {
                 throw new ResourceNotFoundException(Message.NOTE_INVALID);
             }
 
+            if(CommonUtil.validLength(noteDTO.getNoteTitle(),20) ||
+                    CommonUtil.validLength(noteDTO.getNoteDescription(),1000)){
+                throw new ResourceNotFoundException(Message.FIELD_LENGTH_INVALID);
+            }
+
             Note note = mapperUtil.map(noteDTO, Note.class);
             note.setUserId(user.getUserId());
             Integer noteId = noteMapper.insert(note);

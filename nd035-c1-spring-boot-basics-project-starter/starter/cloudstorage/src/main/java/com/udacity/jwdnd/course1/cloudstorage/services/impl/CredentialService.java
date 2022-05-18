@@ -60,6 +60,11 @@ public class CredentialService implements ICredentialService {
                 throw new ResourceNotFoundException(Message.CREDENTIAL_INVALID);
             }
 
+            if( CommonUtil.validLength(credentialDTO.getUrl(),100)
+                    || CommonUtil.validLength(credentialDTO.getUsername(), 30)){
+                throw new ResourceNotFoundException(Message.FIELD_LENGTH_INVALID);
+            }
+
 
             User user = userMapper.getUser(userUtil.getUserCurrent());
 
